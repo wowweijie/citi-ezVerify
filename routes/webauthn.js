@@ -87,7 +87,8 @@ router.post('/response', (request, response) => {
 
     let webauthnResp = request.body
     let clientData   = JSON.parse(base64url.decode(webauthnResp.response.clientDataJSON));
-
+    // debug
+    alert(JSON.stringify(clientData));
     /* Check challenge... */
     if(clientData.challenge !== request.session.challenge) {
         response.json({
@@ -105,7 +106,7 @@ router.post('/response', (request, response) => {
     }
 
     let result;
-    if(webauthnResp.response.attestationObject !== undefined && false) {
+    if(webauthnResp.response.attestationObject !== undefined) {
         /* This is create cred */
         result = utils.verifyAuthenticatorAttestationResponse(webauthnResp);
 

@@ -87,8 +87,7 @@ router.post('/response', (request, response) => {
 
     let webauthnResp = request.body
     let clientData   = JSON.parse(base64url.decode(webauthnResp.response.clientDataJSON));
-    // debug
-    alert(JSON.stringify(clientData));
+    
     /* Check challenge... */
     if(clientData.challenge !== request.session.challenge) {
         response.json({

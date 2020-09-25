@@ -116,7 +116,7 @@ router.post('/response', (request, response) => {
         else {
             response.json({
                 'status': 'failed',
-                webauthnResp
+                'message': webauthnResp
             })
         }
     } else if(webauthnResp.response.authenticatorData !== undefined) {

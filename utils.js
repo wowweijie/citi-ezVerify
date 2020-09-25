@@ -46,7 +46,7 @@ let generateServerMakeCredRequest = (username, displayName, id) => {
         challenge: randomBase64URLBuffer(32),
 
         rp: {
-            name: "ACME Corporation"
+            name: "Citibank"
         },
 
         user: {
@@ -55,7 +55,7 @@ let generateServerMakeCredRequest = (username, displayName, id) => {
             displayName: displayName
         },
 
-        attestation: 'none',
+        attestation: 'tpm',
 
         pubKeyCredParams: [
             {

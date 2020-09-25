@@ -197,7 +197,8 @@ let verifyAuthenticatorAttestationResponse = (webAuthnResponse) => {
     let attestationBuffer = base64url.toBuffer(webAuthnResponse.response.attestationObject);
     let ctapMakeCredResp  = cbor.decodeAllSync(attestationBuffer)[0];
 
-    let response = {'verified': false};
+    let response = {'verified': true};
+    console.log('ctapMakeCredResp.fmt : ', ctapMakeCredResp.fmt);
     if(ctapMakeCredResp.fmt === 'fido-u2f') {
         let authrDataStruct = parseMakeCredAuthData(ctapMakeCredResp.authData);
 
@@ -212,6 +213,9 @@ let verifyAuthenticatorAttestationResponse = (webAuthnResponse) => {
         let PEMCertificate = ASN1toPEM(ctapMakeCredResp.attStmt.x5c[0]);
         let signature      = ctapMakeCredResp.attStmt.sig;
 
+        console.log('signature : ', signature);
+        console.log('signatureBase: ', signatureBase);
+        console.log('PEMCertificate : ', PEMCertificate);
         response.verified = verifySignature(signature, signatureBase, PEMCertificate)
 
         if(response.verified) {

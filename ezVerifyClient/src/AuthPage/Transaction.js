@@ -1,8 +1,17 @@
 import React from "react";
-import "./App.css" 
+import "./TransactionStyle.css" 
 import PropTypes from "prop-types";
 import {Button, Alert} from "react-native";
-import authenticationHandle from "./WebAuthn";
+import authenticationHandle from "../FaceTouchID/WebAuthn";
+import CitiLogo from '../citi_logo.png'
+
+const styles = {
+    image: {
+        width: null,
+        resizeMode: 'contain',
+        height: 80
+    }
+}
 
 function Transaction(props) {
 
@@ -14,16 +23,14 @@ function Transaction(props) {
 
     return (
         <div className = "transaction">
-            <h2>Authorisation Page</h2>
+            <img src={CitiLogo} alt="Logo" style={styles.image}/>;
+            <h1>Authorisation Page</h1>
             <p>Merchant: {props.merchant}</p>
             <p>Amount: {props.amount}</p>
             <p>Date: {props.date}</p>
             <p>Card Number: {props.card_number}</p>
             <p>Transaction ID: {props.transaction_id}</p>
-            <Button
-                title="Authenticate"
-                onPress={handleAuthentication}
-            />
+            <button onClick={handleAuthentication}>Authenticate with FaceID/TouchID</button>
         </div>
     )
 }

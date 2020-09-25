@@ -113,6 +113,12 @@ router.post('/response', (request, response) => {
             database[request.session.username].authenticators.push(result.authrInfo);
             database[request.session.username].registered = true
         }
+        else {
+            response.json({
+                'status': 'failed',
+                webauthnResp
+            })
+        }
     } else if(webauthnResp.response.authenticatorData !== undefined) {
         /* This is get assertion */
         result = utils.verifyAuthenticatorAssertionResponse(webauthnResp, database[request.session.username].authenticators);

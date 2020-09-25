@@ -55,7 +55,7 @@ let generateServerMakeCredRequest = (username, displayName, id) => {
             displayName: displayName
         },
 
-        attestation: 'tpm',
+        attestation: "tpm",
 
         pubKeyCredParams: [
             {

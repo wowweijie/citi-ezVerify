@@ -11,7 +11,7 @@ function SuccessfulAuthPage(props) {
 
     const getTransaction = (id) => {
         //  GET request using fetch() 
-        fetch("/transactions/get_transaction/"+id) 
+        fetch("/back-end/transactions/get_transaction/"+id) 
             
         // Converting received data to JSON 
         .then(response => response.json())

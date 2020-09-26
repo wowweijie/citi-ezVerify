@@ -3,7 +3,7 @@ import {publicKeyCredentialToJSON, generateRandomBuffer,
     preformatMakeCredReq, preformatGetAssertReq} from './utils';
 
 let getMakeCredentialsChallenge = (formBody) => {
-    return fetch('/webauthn/register', {
+    return fetch('/back-end/webauthn/register', {
         method: 'POST',
         credentials: 'include',
         headers: {
@@ -21,7 +21,7 @@ let getMakeCredentialsChallenge = (formBody) => {
 }
 
 let sendWebAuthnResponse = (body) => {
-    return fetch('/webauthn/response', {
+    return fetch('/back-end/webauthn/response', {
         method: 'POST',
         credentials: 'include',
         headers: {
@@ -71,7 +71,7 @@ export const makeCredentials = (event, username) => {
 }
 
 let getGetAssertionChallenge = (formBody) => {
-    return fetch('/webauthn/login', {
+    return fetch('/back-end/webauthn/login', {
         method: 'POST',
         credentials: 'include',
         headers: {

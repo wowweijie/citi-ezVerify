@@ -1,7 +1,7 @@
 import React from "react";
 import "./TransactionStyle.css" 
 import PropTypes from "prop-types";
-import {Button, Alert} from "react-native";
+import {useHistory} from "react-router-dom";
 import authenticationHandle from "../FaceTouchID/WebAuthn";
 import CitiLogo from '../citi_logo.png'
 
@@ -15,17 +15,20 @@ const styles = {
 
 function Transaction(props) {
 
+    const history = useHistory();
+
     const handleAuthentication = (evt) => {
-        evt.preventDefault();
-        authenticationHandle(evt);
+        // evt.preventDefault();
+        // authenticationHandle(evt);
         alert(`Authenticating...`)
+        history.push('/authsuccess/'+props.transaction_id)
     }
 
     return (
         <div className = "transaction">
             <img src={CitiLogo} alt="Logo" style={styles.image}/>;
             <h1>Authorisation Page</h1>
-            <p>Merchant: {props.merchant}</p>
+            <p>Payee: {props.payee}</p>
             <p>Amount: {props.amount}</p>
             <p>Date: {props.date}</p>
             <p>Card Number: {props.card_number}</p>

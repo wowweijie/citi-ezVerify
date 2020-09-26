@@ -4,12 +4,17 @@ const cors = require('cors')
 
 const db = require("../database/db");
 
+const client = require('twilio')(
+  process.env.TWILIO_ACCOUNT_SID,
+  process.env.TWILIO_AUTH_TOKEN
+);
+
 sms.use(cors())
 
 const Sequelize = require('sequelize');
 const op = Sequelize.Op;
 
-sms.post('/sms_otp/messages', (req, res) => {
+sms.post('/messages', (req, res) => {
   res.header('Content-Type', 'application/json');
   client.messages
     .create({

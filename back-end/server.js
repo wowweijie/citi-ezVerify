@@ -21,11 +21,6 @@ process.env['TWILIO_ACCOUNT_SID'] = TWILIO_ACCOUNT_SID;
 process.env['TWILIO_AUTH_TOKEN'] = TWILIO_AUTH_TOKEN;
 process.env['TWILIO_PHONE_NUMBER'] = TWILIO_PHONE_NUMBER;
 
-const client = require('twilio')(
-  process.env.TWILIO_ACCOUNT_SID,
-  process.env.TWILIO_AUTH_TOKEN
-);
-
 const app           = express();
 const db = require('./database/db');
 

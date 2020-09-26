@@ -4,7 +4,7 @@ import Request from "./Request";
 
 function RequestPage(){
     return (
-        <div className = "request">
+        <div className = "appReq">
             <Request />
         </div>
       )

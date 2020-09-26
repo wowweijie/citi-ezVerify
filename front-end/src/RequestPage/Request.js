@@ -1,18 +1,14 @@
 import React from 'react';
 import "./RequestStyle.css"
+import { useHistory } from 'react-router-dom'
 
-var state = {
-  data: null
-};
-
-var querystring = require('querystring')
 
 function Request() {
   const [payee, setPayee] = React.useState("");
   const [amount, setAmount] = React.useState("");
   const [cardNumber, setCardNumber] = React.useState("");
   const number = "+6582668696";
-
+  const history = useHistory();
   
 
 
@@ -51,6 +47,7 @@ function Request() {
       let url = "http://localhost:3000/auth/"+transaction_id;
       console.log(url)
       sendSMS(url,number);
+      history.push('/requestsuccess')
   }); 
 
   }
@@ -74,24 +71,6 @@ function Request() {
     }) 
     // Converting to JSON 
     .then(response => response.json()) 
-    .then(data => {
-      if (data.success) {
-        this.setState({
-          error: false,
-          submitting: false,
-          message: {
-            to: '',
-            body: ''
-          }
-        });
-      } else {
-        this.setState({
-          error: true,
-          submitting: false
-        });
-      }
-    });
-
 
   }
  

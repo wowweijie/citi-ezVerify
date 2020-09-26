@@ -1,8 +1,8 @@
-import React, {useEffect} from "react";
-import '../App.css';
-import Transaction from "./Transaction";
+import React , {useEffect} from "react";
+import "../App.css";
+import Receipt from "./Receipt";
 
-function AuthPage(props){
+function SuccessfulAuthPage(props) {
 
     const [payee, setPayee] = React.useState("");
     const [amount, setAmount] = React.useState("");
@@ -28,14 +28,16 @@ function AuthPage(props){
     useEffect(() => getTransaction(props.match.params.id));
 
     return (
-        <div className = "appAuth">
-            <Transaction payee = {payee}
-                         amount = {amount}
-                         date = {date.slice(0,10)+" "+date.slice(11,22)}
-                         card_number = {cardNumber}
-                         transaction_id = {props.match.params.id}/>
+        <div className="appAuth">
+        <Receipt
+            merchant = {payee}
+            amount = {amount}
+            date = {date.slice(0,10)+" "+date.slice(11,22)}
+            card_number = {cardNumber}
+            transaction_id = {props.match.params.id}
+        />
         </div>
-      )
+    );
 }
 
-export default AuthPage
+export default SuccessfulAuthPage;

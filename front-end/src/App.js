@@ -3,12 +3,8 @@ import { BrowserRouter as Router, Route, Link, Switch } from "react-router-dom";
 import "./App.css";
 import AuthPage from "./AuthPage/AuthPage";
 import RequestPage from "./RequestPage/RequestPage";
-
-
-
-var state = {
-  data: null
-};
+import SuccessfulRequestPage from './RequestPage/SuccessfulRequestPage';
+import SuccessfulAuthPage from './AuthPage/SuccessfulAuthPage';
 
 function componentDidMount() {
   // Call our fetch function below once the component mounts
@@ -34,7 +30,9 @@ function App() {
     <main>
     <Switch>
       <Route path="/" exact component={RequestPage} />
-      <Route path="/auth/:id"  component={AuthPage} />
+      <Route path="/auth/:id" exact component={AuthPage} />
+      <Route path="/requestsuccess" exact component={SuccessfulRequestPage} />
+      <Route path="/authsuccess/:id" exact component={SuccessfulAuthPage} />
       <Route render={() => <h1>404: page not found</h1>} />
     </Switch>
     </main>

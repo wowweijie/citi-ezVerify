@@ -42,7 +42,7 @@
     padding-right: 0.5em;
   }
   
-  button {
+  .transaction > button {
     min-width: 100%;
     cursor: pointer;
     margin-right: 0.25em;
@@ -53,21 +53,10 @@
     background-color: #22223B;
     color: #fefefe;
   }
-  button:hover {
+  .transaction > button:hover {
     background-color: #4A4E69;
     color: #fefefe;
   }
   
-  .error {
-    color:#db2269;
-    font-size: 0.5em;
-    display: relative;
-  }
-  
-  .submit {
-    width: 100%;
-    display: flex;
-    flex-wrap: wrap;
-  }
 
   

@@ -22,7 +22,7 @@ process.env['TWILIO_AUTH_TOKEN'] = TWILIO_AUTH_TOKEN;
 process.env['TWILIO_PHONE_NUMBER'] = TWILIO_PHONE_NUMBER;
 
 const app           = express();
-const db = require('./database/db');
+// const db = require('./database/db');
 
 var Transactions = require('./routes/transactions');
 var SmsOTP = require('./routes/sms_otp');
@@ -54,7 +54,7 @@ app.use(pino);
 
 
 
-db.sequelize.sync();
+// db.sequelize.sync();
 
 const port = process.env.PORT || config.port ;
 

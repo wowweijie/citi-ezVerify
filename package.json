@@ -5,7 +5,7 @@
   "dependencies": {
   },
   "scripts": {
-    "start": "cd front-end && react-scripts start",
+    "start": "cd front-end && npm start",
     "test": "react-scripts test",
     "eject": "react-scripts eject"
   },

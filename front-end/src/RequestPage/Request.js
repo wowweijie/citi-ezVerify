@@ -71,47 +71,10 @@ function Request() {
     }) 
     // Converting to JSON 
     .then(response => response.json()) 
+  
 
   }
- 
-  
-  // const axios = require('axios')
-  // async function sendSMS(authUrl,phoneNumber) {
-  //   console.log("authUrl", authUrl);
-  //   console.log("phoneNumber", phoneNumber);
-  //   // const config = {
-  //   //     'Content-Type': 'application/x-www-form-urlencoded'
-  //   // }
-  //   // const requestBody = {
-  //   //   Body: authUrl,
-  //   //   To: phoneNumber,
-  //   //   From: '+14439513301'
-  //   // }
-  //   // const url = 'https://AC4f84bd7bad460e74b645fed353c1b845:26aa330f9bed147f0213c89d8e5aea28@api.twilio.com/2010-04-01/Accounts/AC4f84bd7bad460e74b645fed353c1b845/Messages'
-  //   // console.log("qs :", querystring.stringify(requestBody))
-  //   // axios({method: 'post', url:url, data:querystring.stringify(requestBody), headers:config })
-  //   //   .then(res => {
-  //   //     console.log(`statusCode: ${res.statusCode}`)
-  //   //     console.log(res)
-  //   //   })
-  //   //   .catch(error => {
-  //   //     console.error(error)
-  //   //   })
 
-  //   // Twilio Credentials
-  //   const accountSid = 'AC4f84bd7bad460e74b645fed353c1b845';
-  //   const authToken = '26aa330f9bed147f0213c89d8e5aea28';
-
-  //   // require the Twilio module and create a REST client
-  //   const client = require('twilio')(accountSid, authToken);
-
-  //   client.messages
-  //     .create({
-  //       to: phoneNumber,
-  //       from: '+14439513301',
-  //       body: authUrl,
-  //     })
-  // }
 
 
   return (

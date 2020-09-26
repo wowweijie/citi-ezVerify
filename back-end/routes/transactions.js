@@ -20,7 +20,7 @@ transactions.post('/add_transaction',(req, res) => {
     }
     Transactions.create(transaction_data)
     .then(result => {
-        res.json({status: 200, message: 'Transaction created'})
+        res.json({status: 200, message: 'Transaction created', data : result.transaction_id})
     })
     .catch(err => {
         //res.send('error' + err)
@@ -28,5 +28,19 @@ transactions.post('/add_transaction',(req, res) => {
     })
 })
 
+transactions.get('/get_transaction/:id',(req, res) => {
+    Transactions.findAll({
+        where: {
+            transaction_id: req.params.id
+        }
+        // include: ['payee','amount','date','card_number']
+    })
+    .then(result => {
+        res.json({status: 200, message: 'Transaction retrieved', data : result})
+    })
+    .catch(err => {
+        res.json({status: 500, message: 'Invalid data'})
+    })        
+})
 
 module.exports = transactions

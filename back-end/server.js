@@ -10,37 +10,27 @@ const config        = require('./config.json');
 const defaultroutes = require('./routes/default');
 const passwordauth  = require('./routes/password');
 const webuathnauth  = require('./routes/webauthn.js');
+const pino = require('express-pino-logger')();
+
+
+const TWILIO_ACCOUNT_SID='AC4f84bd7bad460e74b645fed353c1b845';
+const TWILIO_AUTH_TOKEN='26aa330f9bed147f0213c89d8e5aea28';
+const TWILIO_PHONE_NUMBER='+14439513301';
+
+process.env['TWILIO_ACCOUNT_SID'] = TWILIO_ACCOUNT_SID;
+process.env['TWILIO_AUTH_TOKEN'] = TWILIO_AUTH_TOKEN;
+process.env['TWILIO_PHONE_NUMBER'] = TWILIO_PHONE_NUMBER;
+
+const client = require('twilio')(
+  process.env.TWILIO_ACCOUNT_SID,
+  process.env.TWILIO_AUTH_TOKEN
+);
 
 const app           = express();
 const db = require('./database/db');
 
 var Transactions = require('./routes/transactions');
-
-// function handle_database(req,res) {
-
-//   pool.getConnection(function(err,connection){
-//       if (err) {
-//         connection.release();
-//         res.json({"code" : 100, "status" : "Error in connection database"});
-//         return;
-//       }   
-
-//       console.log('connected as id ' + connection.threadId);
-
-//       connection.query("select * from user",function(err,rows){
-//           connection.release();
-//           if(!err) {
-//               res.json(rows);
-//           }           
-//       });
-
-//       connection.on('error', function(err) {      
-//             res.json({"code" : 100, "status" : "Error in connection database"});
-//             return;     
-//       });
-// });
-// }
-
+var SmsOTP = require('./routes/sms_otp');
 
 app.use(bodyParser.json());
 
@@ -61,18 +51,20 @@ app.use('/', defaultroutes)
 app.use('/password', passwordauth)
 app.use('/webauthn', webuathnauth)
 app.use('/transactions', Transactions)
+app.use('/sms_otp', SmsOTP)
+
+app.use(bodyParser.urlencoded({ extended: false }));
+app.use(bodyParser.json());
+app.use(pino);
+
+
 
 db.sequelize.sync();
 
 const port = process.env.PORT || config.port ;
-// app.listen(port);
-// console.log(`Started app on port ${port}`);
 
 // console.log that your server is up and running
 app.listen(port, () => console.log(`Listening on port ${port}`));
 
 module.exports = app;
 
-// app.get("/",function(req,res){-
-//   handle_database(req,res);
-// });

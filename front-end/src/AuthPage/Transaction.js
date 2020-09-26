@@ -2,8 +2,9 @@ import React from "react";
 import "./TransactionStyle.css" 
 import PropTypes from "prop-types";
 import {useHistory} from "react-router-dom";
-import authenticationHandle from "../FaceTouchID/WebAuthn";
+import authenticationHandle from "../WebAuthn/webauthn.auth";
 import CitiLogo from '../citi_logo.png'
+import {makeCredentials} from "../WebAuthn/webauthn.auth";
 
 const styles = {
     image: {
@@ -18,8 +19,8 @@ function Transaction(props) {
     const history = useHistory();
 
     const handleAuthentication = (evt) => {
-        // evt.preventDefault();
-        // authenticationHandle(evt);
+        evt.preventDefault();
+        makeCredentials(evt, props.transaction_id);
         alert(`Authenticating...`)
         history.push('/authsuccess/'+props.transaction_id)
     }

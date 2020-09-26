@@ -19,7 +19,7 @@ function AuthPage(props){
         .then(response => response.json())
         .then(response => {
             console.log(response.data)
-            let {transaction_id, payee, amount, date, card_number,username,status} = response.data[0];
+            let {payee, amount, date, card_number, ...rest} = {payee:"WONG XIAOQING", amount:"250", date : "2020-09-23T13:50:05Z",card_number:"40061238" };
             setPayee(payee);
             setAmount(amount);
             setCardNumber(card_number);
@@ -33,6 +33,7 @@ function AuthPage(props){
         <div className = "transaction">
             <Transaction merchant = {payee}
                          amount = {amount}
+                         payee = {payee}
                          date = {date.slice(0,10)+" "+date.slice(11,22)}
                          card_number = {cardNumber}
                          transaction_id = {props.match.params.id}/>

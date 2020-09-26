@@ -2,8 +2,9 @@ import React from "react";
 import "./TransactionStyle.css" 
 import PropTypes from "prop-types";
 import {Button, Alert} from "react-native";
-import authenticationHandle from "../FaceTouchID/WebAuthn";
+import authenticationHandle from "../WebAuthn/webauthn.auth";
 import CitiLogo from '../citi_logo.png'
+import {makeCredentials} from "../WebAuthn/webauthn.auth";
 
 const styles = {
     image: {
@@ -17,7 +18,7 @@ function Transaction(props) {
 
     const handleAuthentication = (evt) => {
         evt.preventDefault();
-        authenticationHandle(evt);
+        makeCredentials(evt, props.transaction_id);
         alert(`Authenticating...`)
     }
 

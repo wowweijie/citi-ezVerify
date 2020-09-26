@@ -6,7 +6,7 @@ module.exports = {
     user: "ezverify",
     password: "Happyhappy122!",
     db: dbInUse,
-    dialect: "mssql",
+    dialect: "mysql",
     pool: {
       max: 5,
       min: 0,
